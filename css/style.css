@@ -180,4 +180,24 @@ footer a {
     section {
         padding: 1.2rem;
     }
+    .profil-container {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+    }
+
+    .profil-foto {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%; /* Macht das Bild rund */
+        object-fit: cover; /* Verhindert Verzerrungen */
+        border: 3px solid #3498db;
+    }
+
+    @media (max-width: 600px) {
+        .profil-container {
+            flex-direction: column;
+            text-align: center;
+        }
+    }
 }
