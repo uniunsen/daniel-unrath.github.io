@@ -18,7 +18,7 @@ Write-Host "--------------------------------------------------"
 # 2. Schleife: Jedes Ziel einzeln prüfen
 foreach ($Ziel in $NetzwerkZiele) {
 
-    Write-Host "Prüfe Verbindung zu: $Ziel..." -NoNewline
+    Write-Host "Pruefe Verbindung zu: $Ziel..." -NoNewline
 
     # Test-Connection ist das PowerShell-Pendant zum klassischen 'ping'
     # -Count 1 sendet nur ein Paket (spart Zeit)
