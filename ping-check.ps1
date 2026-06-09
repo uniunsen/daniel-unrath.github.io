@@ -4,7 +4,7 @@
 # ZWECK: Überprüfung der Erreichbarkeit kritischer Netzwerk-Infrastruktur
 # ==============================================================================
 
-# 1. Definition der zu prüfenden IP-Adressen (Array)
+# 1. Definition der zu pruefenden IP-Adressen (Array)
 $NetzwerkZiele = @(
     "127.0.0.1",       # Localhost (Eigener PC)
     "8.8.8.8",         # Google Public DNS (Internet-Prüfung)
@@ -15,7 +15,7 @@ $NetzwerkZiele = @(
 Write-Host "=== Starte automatisierten Infrastruktur-Check ===" -ForegroundColor Cyan
 Write-Host "--------------------------------------------------"
 
-# 2. Schleife: Jedes Ziel einzeln prüfen
+# 2. Schleife: Jedes Ziel einzeln pruefen
 foreach ($Ziel in $NetzwerkZiele) {
 
     Write-Host "Pruefe Verbindung zu: $Ziel..." -NoNewline
