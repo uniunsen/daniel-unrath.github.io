@@ -1,0 +1,183 @@
+/* --- Globale Einstellungen & Reset --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #2c3e50;
+    background-color: #f4f6f9;
+    line-height: 1.6;
+}
+
+a {
+    color: #3498db;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+a:hover {
+    color: #2980b9;
+    text-decoration: underline;
+}
+
+/* --- Header / Kopfbereich --- */
+header {
+    background-color: #1a252f; /* Dunkles Anthrazit/Blau für IT-Bezug */
+    color: #ffffff;
+    padding: 3rem 1rem;
+    text-align: center;
+    border-bottom: 4px solid #3498db; /* Blauer Akzentstreifen */
+}
+
+.header-container h1 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.5px;
+}
+
+.subtitle {
+    color: #bdc3c7;
+    font-size: 1.2rem;
+    font-weight: 300;
+}
+
+/* --- Hauptbereich (Main Layout) --- */
+main {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+}
+
+/* --- Sektionen Allgemein --- */
+section {
+    background-color: #ffffff;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    border-radius: 6px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+h2 {
+    color: #1a252f;
+    font-size: 1.6rem;
+    margin-bottom: 1.2rem;
+    border-bottom: 2px solid #ecf0f1;
+    padding-bottom: 0.4rem;
+}
+
+h3 {
+    color: #2c3e50;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+/* --- Fähigkeiten / Tech-Stack (Grid Layout) --- */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1xl));
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.skill-category {
+    background-color: #f8f9fa;
+    padding: 1.2rem;
+    border-radius: 4px;
+    border-top: 3px solid #2c3e50;
+}
+
+.skill-category h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.8rem;
+}
+
+.skill-category ul {
+    list-style-type: none;
+}
+
+.skill-category li {
+    margin-bottom: 0.5rem;
+    position: relative;
+    padding-left: 1.2rem;
+}
+
+/* Kleiner Custom-Punkt vor den Skill-Einträgen */
+.skill-category li::before {
+    content: "▪";
+    color: #3498db;
+    position: absolute;
+    left: 0;
+    font-size: 1rem;
+}
+
+/* --- Projekt-Karten --- */
+.projekt-karte {
+    background-color: #f8f9fa;
+    border-left: 4px solid #3498db;
+    padding: 1.5rem;
+    margin-top: 1.2rem;
+    border-radius: 0 4px 4px 0;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.projekt-karte:hover {
+    transform: translateX(4px);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.projekt-beschreibung {
+    margin-bottom: 0.8rem;
+    color: #555;
+}
+
+.projekt-tech {
+    font-size: 0.9rem;
+    margin-bottom: 0.8rem;
+    color: #7f8c8d;
+}
+
+.projekte-link {
+    font-weight: bold;
+    font-size: 0.95rem;
+}
+
+/* --- Kontakt --- */
+.kontakt-liste {
+    list-style: none;
+    margin-top: 1rem;
+}
+
+.kontakt-liste li {
+    margin-bottom: 0.6rem;
+}
+
+/* --- Fußzeile --- */
+footer {
+    text-align: center;
+    padding: 1.5rem 1rem;
+    background-color: #1a252f;
+    color: #7f8c8d;
+    font-size: 0.9rem;
+    margin-top: 4rem;
+}
+
+footer a {
+    color: #bdc3c7;
+}
+
+/* --- Responsive Anpassung für Mobilgeräte --- */
+@media (max-width: 600px) {
+    .header-container h1 {
+        font-size: 1.8rem;
+    }
+    main {
+        margin: 1rem auto;
+    }
+    section {
+        padding: 1.2rem;
+    }
+}
