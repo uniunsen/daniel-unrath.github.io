@@ -8,7 +8,6 @@
 </head>
 <body>
 
-<!-- Header / Kopfbereich -->
 <header>
     <div class="header-container">
         <h1>Daniel Gerald Unrath</h1>
@@ -16,10 +15,7 @@
     </div>
 </header>
 
-<!-- Hauptinhalt -->
 <main>
-
-    <!-- Sektion 1: Kurzprofil mit Foto -->
     <section id="ueber-mich">
         <h2>Über mich</h2>
         <div class="profil-container">
@@ -33,7 +29,7 @@
         </div>
     </section>
 
-    <!-- Sektion 2: Kernkompetenzen & Tech-Stack -->
+    <!-- Tech-Stack (bleibt gleich) -->
     <section id="tech-stack">
         <h2>Fähigkeiten & Tech-Stack</h2>
         <div class="skills-grid">
@@ -47,135 +43,58 @@
             <div class="skill-category">
                 <h3>Virtualisierung & Container</h3>
                 <ul>
-                    <li>Hyper-V</li>
-                    <li>VMware</li>
-                    <li>Docker (Container-Infrastrukturen)</li>
+                    <li>Hyper-V, VMware, Docker</li>
                 </ul>
             </div>
             <div class="skill-category">
                 <h3>Netzwerk & Sicherheit</h3>
                 <ul>
-                    <li>VPN (z. B. WireGuard-Konfigurationen)</li>
-                    <li>Netzwerkprotokolle (TCP/IP, DNS, DHCP)</li>
-                    <li>Firewall-Administration</li>
+                    <li>VPN (WireGuard), TCP/IP, DNS, DHCP, Firewall</li>
                 </ul>
             </div>
         </div>
     </section>
 
-    <!-- Sektion 3: Zertifikate & Qualifikationen -->
-    <section id="zertifikate">
-        <h2>Zertifikate & Qualifikationen</h2>
-
-        <div class="zertifikat-eintrag">
-            <h3>IT Berufseinstieg (WBS TRAINING)</h3>
-            <p>Intensivqualifizierung (310 Unterrichtsstunden) – <strong>Abschlussnote: 1,0 (99%)</strong></p>
-            <p class="projekt-tech">Kernbereiche: IT Basics, Berufspraktisches Englisch, Technische Grundlagen</p>
-        </div>
-
-        <div class="zertifikat-eintrag">
-            <h3>Systemadministration & Windows Server</h3>
-            <ul>
-                <li>Windows Server 2022 Administration Grundkurs (5 Std. 5 Min.)</li>
-                <li>Windows Server lernen: Active Directory und Gruppenrichtlinien (1 Std. 53 Min.)</li>
-                <li>Windows Server lernen: Netzwerkdienste (1 Std. 40 Min.)</li>
-                <li>Windows Server 2022: Überwachung und Troubleshooting von Windows Server-Umgebungen (3 Std. 7 Min.)</li>
-                <li>Microsoft Entra ID Grundkurs (2 Std. 17 Min.)</li>
-                <li>Kernkompetenzen für Ihre Karriere in der Systemadministration (Microsoft/LinkedIn – 4 Std. 50 Min.)</li>
-            </ul>
-        </div>
-
-        <div class="zertifikat-eintrag">
-            <h3>Cloud-Infrastruktur (Lernpfade)</h3>
-            <ul>
-                <li><strong>AWS:</strong> Lernpfad-Zertifikat „AWS Cloud Practitioner werden“ (4 Std. 54 Min.)</li>
-                <li><strong>Microsoft Azure:</strong> Lernpfad-Zertifikat „Bereiten Sie sich auf die Microsoft Azure Fundamentals-Prüfung AZ-900 vor“ (6 Std. 28 Min.)</li>
-            </ul>
-        </div>
-
-        <div class="zertifikat-eintrag">
-            <h3>Linux & Open-Source-Tools</h3>
-            <ul>
-                <li>Linux-Befehlszeile Grundkurs (4 Std. 26 Min.)</li>
-                <li>Grundlegende Systemdienste in Linux (LPIC-1102 – 1 Std. 53 Min.)</li>
-                <li>Vagrant Grundkurs (Virtuelle Umgebungen – 2 Std. 22 Min.)</li>
-                <li>SSH lernen (Secure Shell – 2 Std. 8 Min.)</li>
-            </ul>
-        </div>
-
-        <div class="zertifikat-eintrag">
-            <h3>IT-Sicherheit & Qualitätsmanagement</h3>
-            <ul>
-                <li>Implementierung und Betrieb eines ISMS auf Basis von ISO/IEC 27001 (1 Std. 19 Min.)</li>
-                <li>Cybersecurity Grundlagen: Grundlegende Konzepte (3 Std. 5 Min.)</li>
-                <li>Cybersecurity-Bedrohungen im Überblick (1 Std. 6 Min.)</li>
-                <li>Modernes Qualitätsmanagement nach ISO 9001 (1 Std. 5 Min.)</li>
-            </ul>
-        </div>
-
-        <p class="hinweis-zeugnisse">*Hinweis: Alle offiziellen Zertifikate und detaillierten Leistungsnachweise liegen meinen schriftlichen Bewerbungsunterlagen bei.*</p>
-    </section>
-
-    <!-- Sektion 4: Projekte & Praktische Arbeiten-->
+    <!-- Projekte -->
     <section id="projekte">
     <h2>Projekte & Praktische Arbeiten</h2>
     
     <div class="projekt-karte">
         <h3>Projekt 1: Automatisierter Ping-Tester (PowerShell)</h3>
-        <p class="projekt-beschreibung">
-            Automatisiertes Skript zur zyklischen Überprüfung kritischer Netzwerk-Infrastruktur (Localhost, Gateways, externe DNS-Server) inklusive farbcodierter Statusausgabe.
-        </p>
-        <p class="projekt-tech"><strong>Technologien:</strong> PowerShell, ICMP, Netzwerkanalyse</p>
-        <a href="https://github.com/uniunsen/daniel-unrath.github.io/blob/main/ping-tester.ps1" class="projekte-link" target="_blank">PowerShell-Skript ansehen →</a>
+        <p class="projekt-beschreibung">Automatisiertes Skript zur zyklischen Überprüfung kritischer Netzwerk-Infrastruktur.</p>
+        <p class="projekt-tech"><strong>Technologien:</strong> PowerShell, ICMP</p>
+        <a href="https://github.com/daniel-unrath/daniel-unrath.github.io/blob/main/ping-tester.ps1" class="projekte-link" target="_blank">Skript ansehen →</a>
     </div>
 
     <div class="projekt-karte">
-        <h3>Projekt 2: Virtuelle Testumgebung mit Windows Server 2022</h3>
-        <p class="projekt-beschreibung">
-            Aufbau einer isolierten Active-Directory-Infrastruktur unter Hyper-V zur Simulation von Gruppenrichtlinien, Benutzerverwaltung und Server-Hardening.
-        </p>
-        <p class="projekt-tech"><strong>Technologien:</strong> Hyper-V, Windows Server 2022, PowerShell</p>
-        <a href="https://github.com/uniunsen/daniel-unrath.github.io/blob/main/README_Projekt2.md" class="projekte-link" target="_blank">Architektur-Dokumentation ansehen →</a><br>
-        <a href="https://github.com/uniunsen/daniel-unrath.github.io/blob/main/AD-Benutzeranlage.ps1" class="projekte-link" target="_blank">PowerShell-Skript (Automatisierung) ansehen →</a>
+        <h3>Projekt 2: Virtuelle Testumgebung (Windows Server 2022)</h3>
+        <p class="projekt-beschreibung">Aufbau einer isolierten Active-Directory-Infrastruktur unter Hyper-V.</p>
+        <a href="https://github.com/daniel-unrath/daniel-unrath.github.io/blob/main/README_Projekt2.md" class="projekte-link" target="_blank">Architektur-Dokumentation →</a>
     </div>
 
     <div class="projekt-karte">
-        <h3>Projekt 3: Docker-Infrastruktur für lokale Netzwerkdienste</h3>
+        <h3>Projekt 3: 2D Arcade-Spiel (Java)</h3>
         <p class="projekt-beschreibung">
-            Bereitstellung und Absicherung zentraler Netzwerkdienste (wie z. B. Pi-hole als DNS-Filter) in einer containerisierten Linux-Umgebung.
+            Entwicklung eines 2D Arcade-Spiels mit Java Swing/AWT. Fokus auf objektorientierte Logik, Multithreading und Highscore-Verwaltung.
         </p>
-        <p class="projekt-tech"><strong>Technologien:</strong> Docker, Linux, Bash</p>
-        <a href="#" class="projekte-link" target="_blank">Repository ansehen →</a>
+        <p class="projekt-tech"><strong>Technologien:</strong> Java, Swing/AWT, Multithreading, OOP</p>
+        <!-- Ersetze hier "DEIN-JAVA-REPO-NAME" durch den Namen deines neuen Java-Repositories -->
+        <a href="https://github.com/daniel-unrath/DEIN-JAVA-REPO-NAME" class="projekte-link" target="_blank">Zum Java-Projekt →</a>
     </div>
 </section>
     
-    <!-- Sektion 5: Kontakt -->
     <section id="kontakt">
-        <h2>Contact</h2>
-        <p>Falls Sie Interesse an einer Zusammenarbeit, einem Praktikum oder einem fachlichen Austausch haben, können Sie mich jederzeit kontaktieren:</p>
+        <h2>Kontakt</h2>
+        <p>Ich freue mich auf Ihre Nachricht:</p>
         <ul class="kontakt-liste">
             <li><strong>E-Mail:</strong> <a href="mailto:unrath-daniel@t-online.de">unrath-daniel@t-online.de</a></li>
             <li><strong>GitHub:</strong> <a href="https://github.com/daniel-unrath" target="_blank">github.com/daniel-unrath</a></li>
         </ul>
     </section>
-
 </main>
 
-<!-- Fußzeile / Rechtliches -->
 <footer>
     <p>&copy; 2026 Daniel Gerald Unrath | <a href="#impressum">Impressum & Datenschutz</a></p>
 </footer>
-
-<!-- Impressum-Inhalt -->
-<section id="impressum" style="font-size: 0.85rem; margin-top: 5rem; color: #7f8c8d;">
-    <h2>Impressum & Datenschutz</h2>
-    <p><strong>Angaben gemäß § 5 TMG:</strong></p>
-    <p>Daniel Gerald Unrath<br>Friedenstrasse 22<br>97421 Schweinfurt</p>
-    <p><strong>Kontakt:</strong><br>E-Mail: unrath-daniel@t-online.de</p>
-    <br>
-    <p><strong>Datenschutzerklärung:</strong><br>
-        Diese Website wird über GitHub Pages (GitHub Inc.) gehostet. Beim Aufruf dieser Seite werden vom Hoster automatisch Logfiles (u.a. IP-Adresse, Datum, Uhrzeit) erhoben, um den sicheren Betrieb zu gewährleisten. Ich selbst erhebe, speichere oder analysiere keine personenbezogenen Daten auf dieser Website.</p>
-</section>
-
 </body>
 </html>
