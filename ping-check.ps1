@@ -1,5 +1,5 @@
 # ==============================================================================
-# PROJEKT: Advanced Network Monitoring Tool (Version 3.2)
+# PROJEKT: Ping Check (Advanced Network Monitoring Tool)
 # AUTOR: Daniel Gerald Unrath
 # ==============================================================================
 
@@ -31,7 +31,7 @@ if (!(Test-Path $LogDatei)) {
 
 Clear-Host
 Write-Host "========================================" -ForegroundColor Cyan
-Write-Host "       Advanced Network Monitoring       " -ForegroundColor Cyan
+Write-Host "            Ping Check Tool             " -ForegroundColor Cyan
 Write-Host "========================================" -ForegroundColor Cyan
 Write-Host "Geladene Ziele : $($NetzwerkZiele.Count)" -ForegroundColor Gray
 Write-Host "Prüfintervall  : $Intervall s" -ForegroundColor Gray
@@ -44,14 +44,12 @@ while ($true) {
 
     foreach ($Ziel in $NetzwerkZiele) {
         try {
-            # Dynamische Parametervergabe (Splatting) für Abwärtskompatibilität
             $PingParams = @{
                 ComputerName = $Ziel
                 Count        = 1
                 ErrorAction  = "Stop"
             }
 
-            # -TimeoutSeconds nur hinzufügen, wenn PowerShell 6 oder neuer genutzt wird
             if ($PSVersionTable.PSVersion.Major -ge 6) {
                 $PingParams["TimeoutSeconds"] = $Timeout
             }
@@ -99,6 +97,5 @@ while ($true) {
         }
     }
 
-    Write-Host "----------------------------------------" -ForegroundColor DarkGray
     Start-Sleep -Seconds $Intervall
 }
