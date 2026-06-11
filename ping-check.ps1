@@ -1,37 +1,104 @@
 # ==============================================================================
-# PROJEKT: Automatisierter Netzwerk-Ping-Tester
+# PROJEKT: Advanced Network Monitoring Tool (Version 3.2)
 # AUTOR: Daniel Gerald Unrath
-# ZWECK: Überprüfung der Erreichbarkeit kritischer Netzwerk-Infrastruktur
 # ==============================================================================
 
-# 1. Definition der zu pruefenden IP-Adressen (Array)
-$NetzwerkZiele = @(
-    "127.0.0.1",       # Localhost (Eigener PC)
-    "8.8.8.8",         # Google Public DNS (Internet-Prüfung)
-    "192.168.1.1",     # Typische Router-IP (Lokales Netzwerk)
-    "10.0.0.99"        # Fiktive IP (Protest für den Offline-Fall)
-)
+$TargetFile = Join-Path $PSScriptRoot "targets.txt"
+$FallbackTargets = @("127.0.0.1", "8.8.8.8", "192.168.1.1")
+$Intervall = 5
+$Timeout = 1
+$LogDatei = Join-Path $PSScriptRoot "monitor_log.csv"
+$OnlyStateChanges = $true
 
-Write-Host "=== Starte automatisierten Infrastruktur-Check ===" -ForegroundColor Cyan
-Write-Host "--------------------------------------------------"
+if (Test-Path $TargetFile) {
+    $NetzwerkZiele = Get-Content $TargetFile | Where-Object { $_ -match '\S' }
+} else {
+    Write-Host "WARNUNG: targets.txt fehlt -> Fallback wird verwendet" -ForegroundColor Yellow
+    $NetzwerkZiele = $FallbackTargets
+}
 
-# 2. Schleife: Jedes Ziel einzeln pruefen
-foreach ($Ziel in $NetzwerkZiele) {
+$LetzteStatus = @{}
 
-    Write-Host "Pruefe Verbindung zu: $Ziel..." -NoNewline
-
-    # Test-Connection ist das PowerShell-Pendant zum klassischen 'ping'
-    # -Count 1 sendet nur ein Paket (spart Zeit)
-    # -Quiet liefert exakt $True (online) oder $False (offline) zurück
-    $Ergebnis = Test-Connection -ComputerName $Ziel -Count 1 -Quiet
-
-    # 3. Auswertung der Erreichbarkeit (If/Else-Bedingung)
-    if ($Ergebnis -eq $True) {
-        Write-Host " [ONLINE]" -ForegroundColor Green
-    } else {
-        Write-Host " [OFFLINE / TIME-OUT]" -ForegroundColor Red
+if (!(Test-Path $LogDatei)) {
+    try {
+        "Timestamp,Host,Status,ResponseTime_ms" | Out-File $LogDatei -Encoding utf8 -ErrorAction Stop
+    }
+    catch {
+        Write-Error "Kritischer Fehler: Log-Datei konnte nicht initialisiert werden: $_"
+        exit
     }
 }
 
-Write-Host "--------------------------------------------------"
-Write-Host "Infrastruktur-Check beendet." -ForegroundColor Cyan
+Clear-Host
+Write-Host "========================================" -ForegroundColor Cyan
+Write-Host "       Advanced Network Monitoring       " -ForegroundColor Cyan
+Write-Host "========================================" -ForegroundColor Cyan
+Write-Host "Geladene Ziele : $($NetzwerkZiele.Count)" -ForegroundColor Gray
+Write-Host "Prüfintervall  : $Intervall s" -ForegroundColor Gray
+Write-Host "Log-Pfad       : $LogDatei" -ForegroundColor Gray
+Write-Host "`nBeenden mit [STRG + C]`n" -ForegroundColor Yellow
+
+while ($true) {
+    $Timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
+    $LogBuffer = @()
+
+    foreach ($Ziel in $NetzwerkZiele) {
+        try {
+            # Dynamische Parametervergabe (Splatting) für Abwärtskompatibilität
+            $PingParams = @{
+                ComputerName = $Ziel
+                Count        = 1
+                ErrorAction  = "Stop"
+            }
+
+            # -TimeoutSeconds nur hinzufügen, wenn PowerShell 6 oder neuer genutzt wird
+            if ($PSVersionTable.PSVersion.Major -ge 6) {
+                $PingParams["TimeoutSeconds"] = $Timeout
+            }
+
+            $Ping = Test-Connection @PingParams
+            $Status = "ONLINE"
+
+            if ($null -ne $Ping.ResponseTime) {
+                $ResponseTime = $Ping.ResponseTime
+            } elseif ($null -ne $Ping.Latency) {
+                $ResponseTime = $Ping.Latency
+            } else {
+                $ResponseTime = 0
+            }
+        }
+        catch {
+            $Status = "OFFLINE"
+            $ResponseTime = "N/A"
+        }
+
+        $AlterStatus = $LetzteStatus[$Ziel]
+        $StatusChanged = ($AlterStatus -ne $Status)
+        $LetzteStatus[$Ziel] = $Status
+
+        if ($Status -eq "ONLINE") {
+            Write-Host "[$Timestamp] $Ziel -> ONLINE ($ResponseTime ms)" -ForegroundColor Green
+        } else {
+            Write-Host "[$Timestamp] $Ziel -> OFFLINE" -ForegroundColor Red
+            if ($StatusChanged) {
+                Write-Host "!!! ALERT: $Ziel ist jetzt OFFLINE !!!" -ForegroundColor Yellow
+            }
+        }
+
+        if (-not $OnlyStateChanges -or $StatusChanged) {
+            $LogBuffer += "$Timestamp,$Ziel,$Status,$ResponseTime"
+        }
+    }
+
+    if ($LogBuffer.Count -gt 0) {
+        try {
+            $LogBuffer | Out-File -Append -Encoding utf8 -FilePath $LogDatei -ErrorAction Stop
+        }
+        catch {
+            Write-Host "[$Timestamp] WARNUNG: Schreiben fehlgeschlagen: $_" -ForegroundColor Red
+        }
+    }
+
+    Write-Host "----------------------------------------" -ForegroundColor DarkGray
+    Start-Sleep -Seconds $Intervall
+}
